@@ -1,0 +1,25 @@
+﻿<div id="tgap-summary-results-container" class="status-Passed">
+    <h2>
+        <span class="statusLabel">Inspection is </span>
+        <span ng-if="$parent.isViewMode" class="statusLabel"> {{$parent.$parent.status}} </span>
+        <form novalidate name="summaryResultForm" action="javascript: return false;">
+            <select data-enhance="false" ng-if="!$parent.isViewMode" name="color" ng-model="$parent.$parent.status"
+                    ng-options="picklistItem.value as picklistItem.label for picklistItem in $parent.$parent.statusPicklistsValues"
+                    ng-change="$parent.$parent.saveStatus()" required>
+                <option value="">-- choose status --</option>
+            </select>
+        </form>
+        <span class="text-red labelCount">{{$parent.unsatCount}} Fail</span>
+    </h2>
+    <div id="days-to-reinspection" ng-show="!$parent.isViewMode || $parent.daysToReinspection">
+        <label>Days to Reinspection</label>
+		<input ng-show="!$parent.isViewMode" type="number" name="daysToReinspection" data-theme="a" ng-model="$parent.daysToReinspection">
+        <span ng-if="$parent.isViewMode" class="statusLabel"> {{$parent.$parent.daysToReinspection}} </span>
+    </div>
+    <div class="error-msg" ng-show="$parent.showErrors">
+        Please select a status.
+    </div>
+
+    
+</div>
+

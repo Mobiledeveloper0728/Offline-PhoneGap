@@ -1,0 +1,223 @@
+
+
+/* ------------- [START question extras] ------------- */
+
+/* div surrounding question details page */
+#question-extra-container {
+
+    /* override jquery mobile style */
+    .ui-listview {
+        margin: 0;
+    }
+
+    /* each info section is a li */
+    li {
+
+        margin: 2% 1%;
+        padding: 2% 2% 3% 2%;
+        width: 44%;
+        min-height: 220px;
+        float: left;
+        background: @light-blue;
+        border: 0px;
+
+        /* span contains the icon */
+        span {
+
+            margin: .2em 0 0 0;
+            float: left;
+            background: #333;
+            border: none;
+
+            &:hover {
+                background: #333;
+            }
+
+        }/*closes span*/
+
+        /* heading for each info section */
+        h2 {
+            padding-left: .6em;
+            border-bottom: 2px solid;
+        }
+
+        /* text for each info section contained in one p tag */
+        p {
+            margin: .8em 0 0 .4em;
+            font-size: 1em;
+            white-space: normal;
+        }
+
+    }/*closes li*/
+
+    /* p tag corrective actions note with link to Summary Screen */
+    .actions-note {
+
+        padding-right: 1em;
+        text-align: right;
+
+        button {
+            display: inline;
+            .hide-button();
+            color: @bright-blue;
+        }
+
+    }/*closes actions-note*/
+
+}/*closes question-extra-container*/
+
+/* ------------- [END question extras] ------------- */
+
+
+
+/* ------------- [START question list] ------------- */
+
+/* div that surrounds question content area (does not include bookmarks) */
+#question-container {
+
+    padding: 0;
+
+    table {
+
+        thead {
+            display: none;
+        }
+
+        /* alternating colours for questions */
+        tbody tr:nth-child(even) td {
+            background-color: @light-blue;
+        }
+
+        /* a question */
+        td {
+
+            padding: 0 1em .5em 2em;
+
+            /* div for title */
+            .question-title {
+
+                h3 {
+                    margin-bottom: 0.2em;
+                    display: inline-block;
+                }
+
+            }/*closes question-title*/
+
+            /* div for main content */
+            .question-content-container {
+
+                width: 100%;
+
+                div {
+                    display: table-cell;
+                }
+
+                /* div for actual question */
+                .question-content {
+                    padding-right: 1em;
+                    width: 100%;
+                    
+                    p	{
+                    	margin:	0px 0px 20px 0px;
+                    	}
+                }
+
+            }/*closes question-content-container*/
+
+            /* div for prior corrective actions */
+            .corrective-action-container {
+                margin-bottom: 1em;
+                font-style: italic;
+            }
+
+            /* div for more info link */
+            .question-more-info {
+				display:	none;
+                margin-top: 1em;
+                float: right;
+
+                a {
+                    color: @bright-blue;
+                    font-size: 1.05em;
+                    text-decoration: none;
+                }
+
+            }/*closes question-more-info*/
+
+            /* div that surrounds radio button answers */
+            .radio-buttons {
+				white-space:	nowrap;
+                /* input label pairs contained in span */
+                span {
+
+                    display: inline-block;
+
+                    /* hide actual radio selector */
+                    input[type=radio] {
+
+                        display: none;
+
+                        /* show selected answers */
+                        &:checked + label {
+                            color: #fff;
+                            background: @bright-blue;
+                        }
+
+                    }/*closes input*/
+
+                    /* rounded borders for first and last item, no double-borders in between*/
+                    &:first-child label {
+                        .border-radius(10px, 0, 0, 10px);
+                    }
+                    
+                    &:nth-child(3) label {
+                        .border-radius(0, 10px, 10px, 0);
+                    }
+                    
+                    + span label {
+                        border-left: none;
+                    }
+
+                    /* create button look for label */
+                    label {
+
+                        display: inline-block;
+                        margin: 0;
+                        padding: .5em 2em;
+                        color: @bright-blue;
+                        font-size: 1.0em;
+                        text-align: center;
+                        cursor: pointer;
+                        background: #fff;
+                        border: 2px solid @bright-blue;
+
+                        &:hover,
+                        &:active {
+                            background: @light-blue;
+                        }
+
+                    }/*closes label*/
+
+                }/*closes span*/
+
+            }/*closes radio-button*/
+
+                /* notes icon */
+                button {
+                    float: right;
+                    clear:	right;
+                    width: 37px;
+                    height: 36px;
+                    border: none;
+                    box-shadow: none;
+                    margin-right:	20px;
+                }
+
+        }/*closes td*/
+
+    }/*closes table*/
+
+}/*closes question-container*/
+
+/* ------------- [END question list] ------------- */
+

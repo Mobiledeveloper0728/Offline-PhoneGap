@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+    <title>BasicGov Inspection Application</title>
+
+    <!-- WinJS references -->
+    <!--<link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />-->
+    <!--<script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>-->
+
+    <link rel="stylesheet" href="lib/jquerymobile/jquery.mobile.icons-1.4.2.min.css" />
+    <link rel="stylesheet" href="lib/jquerymobile/jquery.mobile.structure-1.4.2.min.css" />
+    <link rel="stylesheet" href="lib/jquerymobile/tgap.min.css" />
+    <link rel="stylesheet" href="lib/signaturepad/assets/jquery.signaturepad.css" />
+    <link rel="stylesheet/less" type="text/css" href="css/global.less" />
+
+    <!-- Weinre -->
+    <!--<script src="http://192.168.1.136:8088/target/target-script-min.js#anonymous"></script>-->
+
+    <!-- TGAP references -->
+    <!--<script src="lib/cordova.js"></script>-->
+    <script src="cordova.js"></script>
+    <!--<script src="lib/jquery.win8.js"></script>-->
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/jquerymobile/jquery.mobile-1.4.2.js"></script>
+    <script src="lib/less.min.js"></script>
+    <!--<script src="lib/angular.win8.js"></script>-->
+    <script src="lib/angular.min.js"></script>
+    <!--<script src="lib/angular-sanitize.min.js"></script>-->
+    <script src="lib/angular-touch.min.js"></script>
+    <script src="lib/fastclick.js"></script>
+    <!--<script src="lib/salesforce-ajax-toolkit-v29.js"></script>-->
+    <script src="lib/salesforce-ajax-toolkit-v34.js"></script>
+    <script src="lib/moment.min.js"></script>
+    <!--<script src="lib/signaturepad/assets/flashcanvas.js"></script>-->
+    <script src="lib/signaturepad/jquery.signaturepad.js"></script>
+    <script src="lib/signaturepad/assets/json2.min.js"></script>
+
+    <!-- [START] App required JS -->
+    <script src="js/global.js"></script>
+    <script src="js/config.js"></script>
+    <!-- [END] App required JS -->
+
+
+    <!-- [START] Angular JS controllers -->
+    <script src="js/controller/inspection-list-ctrl.js"></script>
+    <!-- [END] Angular JS controllers -->
+
+
+    <!-- [START] Common Angular JS module that represent each page -->
+    <script src="js/filter/fixed-length-number.js"></script>
+    <script src="js/directive/login.js"></script>
+    <script src="js/directive/logout.js"></script>
+    <script src="js/directive/bookmark.js"></script>
+    <script src="js/directive/time-tracking-popup.js"></script>
+    <script src="js/directive/note-popup.js"></script>
+    <script src="js/directive/question-list.js"></script>
+    <script src="js/page/main-checklist-page-ctrl.js"></script>
+    <script src="js/directive/tgap-summary-results.js"></script>
+    <script src="js/directive/tgap-summary-detail-table.js"></script>
+    <script src="js/directive/signature-pad.js"></script>
+    <script src="js/page/summary-page.js"></script>
+    <script src="js/directive/user-guide.js"></script>
+    <script src="js/page/inspection-questions.js"></script>
+    <!-- [END] Common Angular JS module that represent each page -->
+</head>
+<body ng-controller="InspectionListCtrl">
+    <div class="loading-mask loading-overlay"></div>
+    <div class="loading-msg loading-overlay"></div>
+    <notepopup></notepopup>
+    <timetrackingpopup></timetrackingpopup>
+
+    <!--------------------------- [START] Login page --------------------------->
+    <div id="login-page" data-role="page" class="ui-responsive-panel">
+        <login page-id="login-page"></login>
+    </div>
+    <!--------------------------- [END] Login page --------------------------->
+    <!--------------------------- [START] Inspection list page --------------------------->
+    <div id="inspection-list-page" data-role="page" class="ui-responsive-panel" >
+        <div data-role="header" data-position="fixed" class="ui-btn-active ui-state-persist" data-tap-toggle="false">
+            <a href="#user-guide-page" data-transition="slide" class="logo-link">
+                <img class="header_logo" src="./img/logo-app-header.png" alt="BasicGov Audit App Logo" />
+            </a>
+            <h1 class="header-right">Logged in as:<br /> {{username}}</h1>
+            <h1 class="header-center">Your Scheduled Inspections</h1>
+        </div>
+
+        <div role="main" class="ui-content jqm-content">
+            <div ng-show="inspections.length == 0" class="no-inspections">
+                <h2>No Inspections Found</h2>
+                <p>Your inspection itinerary is currently empty.</p>
+                <ul>
+                    <li>To check for new inspections, click the "Download" button below.</li>
+                    <li>To create new inspections, please log in to the web interface.</li>
+                </ul>
+
+            </div>
+            <ul data-role="listview">
+                <li ng-repeat="inspection in inspections">
+                    <div class="ui-grid-a">
+						<h3>
+							Inspection #{{inspection.Name}}
+							<span ng-if="inspection.PreviousInspection">(Re-inspection)</span> -  {{inspection.Type}}
+							<span class="dueDate">
+								<span ng-if="inspection.isOverdue"><strong class="text-red">Past Date</strong> &mdash; </span>
+								<span ng-if="!inspection.isOverdue"><strong class="text-green">Today</strong> &mdash; </span>
+								{{inspection.ScheduledDate.substring(5,7)*1+'-'+inspection.ScheduledDate.substring(8,10)*1+'-'+inspection.ScheduledDate.substring(0,4)}}
+							</span>
+						</h3>
+                        <div class="ui-block-a col1">
+                            <div class="ui-grid-a">
+                                <div class="ui-block-b">
+                                    <span class="bigger-text">Address</span>
+                                </div>
+                            </div>
+                            <div class="ui-grid-a">
+                                <div class="ui-block-b">
+                                    {{inspection.Address}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col2">
+                            <div class="ui-grid-a" ng-if="inspection.Status">
+                                <div class="ui-block-a">
+                                    <b>Inspection Result</b>
+                                </div>
+                                <div class="ui-block-b inspection-result-{{inspection.Status}}">
+                                    <strong>{{inspection.Status}}</strong>
+                                </div>
+                            </div>
+                            <!--<div class="ui-grid-a" ng-show="!inspection.Status">
+                                <div class="ui-block-a">
+                                    <b>Scheduled Date</b>
+                                </div>
+                                <div class="ui-block-b">
+                                </div>
+                            </div>-->
+                            <div class="ui-grid-a">
+                                <div class="ui-block-a">
+                                    <b>Related To</b>
+                                </div>
+                                <div class="ui-block-b relatedTo" ng-bind-html="trustAsHtml(inspection.RelatedTo)">
+                                </div>
+                            </div>
+                            <div class="ui-grid-a">
+                                <div class="ui-block-a">
+                                    <b>Prior Inspection Status</b>
+                                </div>
+                                <div class="ui-block-b">
+                                    {{inspection.Owner}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui-block-b list-buttons col3">
+                            <button class="ui-btn ui-btn-b ui-btn-inline ui-corner-all" ng-click="startInspection(inspection)" ng-if="inspection.EndTime == null && inspection.StartTime == null && inspection.Status != 'Canceled'">
+                                Start Inspection
+                            </button>
+                            <button class="ui-btn ui-btn-b ui-btn-inline ui-corner-all" ng-click="resumeInspection(inspection)" ng-if="inspection.EndTime == null && inspection.StartTime != null && inspection.Status != 'Canceled'">
+                                Resume Inspection
+                            </button>
+                            <button class="ui-btn ui-btn-c ui-btn-inline ui-corner-all" ng-click="cancelInspection(inspection)" ng-if="inspection.EndTime == null && inspection.Status != 'Canceled'">
+                                Cancel
+                            </button>
+                 			<button class="ui-btn ui-btn-b ui-btn-inline ui-corner-all" ng-click="viewSummary(inspection)" ng-if="inspection.EndTime != null && inspection.Status != 'Canceled'">
+                                See Summary
+                            </button>
+                            <p ng-if="inspection.EndTime != null">(not yet uploaded)</p>
+                        </div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <logout></logout>
+            <span ng-show="!isOnline" class="offline-status">Currently Offline</span>
+            <button ng-disabled="!isOnline" class="ui-btn ui-btn-b ui-btn-inline ui-corner-all ui-icon-arrow-d ui-btn-icon-left" ng-click="downloadInspections('Inspection download completed successfully.', 'Download Completed')">
+                Download
+            </button>
+
+            <button ng-disabled="!isOnline || isUploading" class="ui-btn ui-btn-b ui-btn-inline ui-corner-all ui-icon-arrow-u ui-btn-icon-left" ng-click="uploadInspections()">
+                Upload
+            </button>
+        </div>
+    </div>
+    <!--------------------------- [END] Inspection list page --------------------------->
+    <!--------------------------- [START] Question checklist page --------------------------->
+    <div id="main-checklist-page" data-role="page" class="ui-responsive-panel" ng-controller="MainChecklistPageCtrl">
+        <bookmark></bookmark>
+
+        <div data-role="header" data-position="fixed" class="ui-btn-active ui-state-persist" data-tap-toggle="false">
+            <a href="#user-guide-page" data-transition="slide" class="logo-link">
+                <img class="header_logo" src="./img/logo-app-header.png" alt="BasicGov Audit App Logo" />
+            </a>
+            <h1 class="header-right">
+                {{inspection.Type}}
+            </h1>
+            <h1 class="header-center">
+                <button ng-click="addInspectionNotes(inspection, $event)" class="hidden-button">
+                    Inspection #{{inspection.Name}}
+                    <span ng-if="isReinspection">(Reinspection)</span>
+                    <span ng-class="{'ui-btn ui-icon-note ui-corner-all has-note' : inspection.Notes, 'ui-btn ui-icon-note ui-corner-all' : !inspection.Notes}"></span>
+                </button>
+            </h1>
+
+        </div><!-- /header -->
+
+        <div role="main" class="ui-content jqm-content" id="question-container">
+            <questionlist locationtype="{{inspectiontype}}"></questionlist>
+        </div>
+
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div class="ui-grid-b">
+                <div class="ui-block-a footer-left">
+                    <button ng-click="goToInspectionList()" class="ui-btn ui-btn-d ui-btn-inline ui-corner-all ui-icon-arrow-l ui-btn-icon-left">
+                        All Inspections
+                    </button>
+                </div>
+                <div class="ui-block-b">
+                    <button ng-click="goToSummaryScreen(isChecklistCompleted)" class="ui-btn ui-btn-inline hidden-button">
+                        <h2>
+                            <span class="text-red">{{unsatCount}} Fail</span>
+                        </h2>
+                    </button>
+                </div>
+                <div class="ui-block-c">
+                    <button ng-if="!isChecklistCompleted" ng-click="goToSummaryScreen(isChecklistCompleted)" class="ui-btn ui-btn-d ui-btn-inline ui-icon-arrow-r ui-btn-icon-right ui-corner-all">
+                        See Summary
+                    </button>
+                    <button ng-if="isChecklistCompleted" ng-click="goToSummaryScreen(isChecklistCompleted)" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-right ui-corner-all">
+                        Next
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------- [END] Question checklist page --------------------------->
+    <!--------------------------- [START] Summary page --------------------------->
+    <div id="summary-page" data-role="page" class="ui-responsive-panel" ng-controller="SummaryPageCtrl">
+        <div data-role="header" data-position="fixed" class="ui-btn-active ui-state-persist" data-tap-toggle="false">
+
+            <a href="#user-guide-page" data-transition="slide" class="logo-link">
+                <img class="header_logo" src="./img/logo-app-header.png" alt="BasicGov Audit App Logo" />
+            </a>
+            <h1 class="header-right">
+                {{inspection.Type}}
+            </h1>
+            <h1 class="header-center">
+                <button ng-click="addInspectionNotes($event)" class="hidden-button">
+                    Inspection #{{inspection.Name}} Summary
+                    <span ng-if="!isViewMode" ng-class="{'ui-btn ui-icon-note ui-corner-all has-note' : inspection.Notes, 'ui-btn ui-icon-note ui-corner-all' : !inspection.Notes}"></span>
+                </button>
+            </h1>
+        </div><!-- /header -->
+
+        <div role="main" class="ui-content jqm-content" id="summary-container">
+            <tgapsummaryresults></tgapsummaryresults>
+
+
+            <ul id="image-list-container">
+                <li ng-repeat="image in inspection.attachedImages">
+                    <!-- repeat li for each file -->
+                    <!-- button to delete this file from the inspection -->
+                    <button class="ui-btn ui-btn-d ui-btn-inline ui-corner-all ui-btn-icon-notext ui-icon-delete" ng-click="$parent.removeImage($index);" ng-show="!$parent.isViewMode"></button>
+                    <img src="data:image/jpeg;base64,{{image.ImgData}}" />
+                </li>
+            </ul>            <!-- button to launch device camera, capture photo, return user to screen with photo attached -->
+            <button class="ui-btn ui-btn-d ui-btn-inline ui-corner-all ui-btn-icon-left ui-icon-camera" ng-click="attachImage();" ng-show="!isViewMode">
+                Add
+            </button>
+
+            <tgapsummarydetailtable></tgapsummarydetailtable>
+            <div ng-show="!isCompleted && !isViewMode" class="underway">
+                <h2>Inspection In Progress</h2>
+                <p>This inspection is still underway and may not be signed off on or closed until the checklist is fully completed. Please <strong>answer all checklist questions first</strong>, then return to this screen to:</p>
+                <ul>
+                    <li>Add corrective actions (if needed)</li>
+                    <li>Enter respondent information</li>
+                    <li>Capture an respondent signature</li>
+                    <li>Complete the inspection</li>
+                </ul>
+            </div>
+
+            <form name="summarySignature" action="javascript: return false;" ng-show="isCompleted || isViewMode">
+                <div class="signature" style="overflow: hidden;">
+                    <h2>Respondent Signature</h2>
+
+                    <div class="error-msg" ng-show="invalidFields && summarySignature.auditeeName.$error.required">Please provide an respondent name.</div>
+
+                    <p>
+                        This signature confirms that respondent,
+                        <input ng-if="!isViewMode" type="text" name="auditeeName" ng-model="inspection.AuditeeName" required placeholder="Respondent Name" />
+                        <span ng-if="isViewMode" >{{inspection.AuditeeName}}</span>,
+                        has seen and accepted the findings for this {{inspection.Type}} inspection on {{currentDate}}.
+                    </p>
+
+                    <p>
+                        A Certificate of Compliance and/or a Corrective Action Report will be emailed to:
+                        <input ng-if="!isViewMode" type="text" ng-model="inspection.AuditeeEmail" placeholder="john@domain.com, mary@inbox.com" />
+                        <span ng-if="isViewMode" ng-init="inspection.AuditeeEmail = inspection.AuditeeEmail || ''">{{inspection.AuditeeEmail}}.</span>
+                    </p>
+
+                    <p ng-if="!isViewMode"><strong>Have respondent sign below:</strong></p>
+                    <signaturepad ng-if="!isViewMode"></signaturepad>
+                    <img ng-if="isViewMode && inspection.AuditeeSignature" src="{{inspection.AuditeeSignature}}" alt="signature" />
+                 
+                </div>
+            </form>
+
+        </div>
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <a ng-if="isViewMode" href="#inspection-list-page" data-transition="slide" data-direction="reverse" data-role="button" class="ui-btn ui-btn-d ui-btn-left ui-btn-inline ui-corner-all ui-icon-arrow-l ui-btn-icon-left">
+                All Inspections
+            </a>
+            <button ng-if="!isViewMode" ng-click="goBackToChecklist()" class="ui-btn ui-btn-d ui-btn-left ui-btn-inline ui-corner-all ui-icon-arrow-l ui-btn-icon-left">
+                See Inspection
+            </button>
+            <button data-role="button" ng-click="endInspection()" ng-show="isCompleted && !isViewMode" class="ui-btn ui-btn-b close ui-btn-inline ui-corner-all" style="float:right;clear:right;margin-right:20px;">
+                Complete Inspection
+            </button>
+        </div>
+    </div>
+    <!--------------------------- [END] Summary page --------------------------->
+    <!--------------------------- [START] Extra information page --------------------------->
+    <div id="question-extra-page" data-role="page" class="ui-responsive-panel">
+        <questionextras></questionextras>
+    </div>
+    <!--------------------------- [END] Extra information page --------------------------->
+    <!--------------------------- [START] User guide page --------------------------->
+    <div id="user-guide-page" data-role="page" class="ui-responsive-panel">
+        <div data-role="header" data-position="fixed" class="ui-btn-active ui-state-persist" data-tap-toggle="false">
+            <h1 class="header-center">BasicGov Inspection Application User Help</h1>
+        </div>
+
+        <div role="main" class="ui-content jqm-content">
+            <userguide></userguide>
+        </div>
+
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div class="footer-left">
+                <a href="javascript:history.go(-1)" data-transition="{{pageTransition}}" data-direction="reverse" class="ui-btn ui-btn-d ui-btn-inline ui-corner-all ui-icon-arrow-l ui-btn-icon-left">Back</a>
+            </div>
+        </div>
+    </div>
+    <!--------------------------- [END] User guide page --------------------------->
+
+</body>
+</html>

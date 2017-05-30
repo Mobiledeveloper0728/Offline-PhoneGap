@@ -1,0 +1,23 @@
+﻿<div id="bookmarks-collapse-container">
+    <ul class='bookmarks-full-tab-list' data-role="listview">
+        <li class="ui-grid-a"><a href="#bookmarks-expand-container" class="ui-btn ui-btn-d ui-btn-icon-right ui-icon-carat-r">Section</a></li>
+        <li class="ui-grid-a" ng-repeat="bookmark in bookmarks" data-pageid="{{bookmark.Id}}" ng-class="{active: $index == 0}">
+            <a href="#" ng-click="goToSection($event, bookmark.Id)" data-pageid="{{bookmark.Id}}" class="ui-btn ui-btn-d">
+                <div class="section-completed-{{bookmark.completed}}"></div>
+                {{bookmark.Order | number: 0}}.
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="bookmarks-expand-container" data-role="panel" data-position="left" data-display="push">
+    <ul class="bookmarks-full-tab-list" data-role="listview">
+        <li data-icon="delete"><a href="#" data-rel="close" class="ui-btn ui-btn-d ui-btn-icon-right ui-icon-carat-l">Section</a></li>
+        <li class="tab" ng-repeat="bookmark in bookmarks" data-pageid="{{bookmark.Id}}" ng-class="{active: $index == 0}">
+            <a href="#" ng-click="goToSection($event, bookmark.Id)" data-pageid="{{bookmark.Id}}" class="ui-btn ui-btn-d">
+                <div class="section-completed-{{bookmark.completed}}"></div>
+                {{bookmark.Order | number: 0}}. {{bookmark.Name}}
+            </a>
+        </li>
+    </ul>
+</div>

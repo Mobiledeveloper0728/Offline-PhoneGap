@@ -1,0 +1,316 @@
+
+
+/* ------------- [START Color variables] ------------ */
+
+@red: #dc3054;
+@light-red: #fbf0f3;
+@yellow: #f1c232;
+@green: #00AD8F;
+@light-green: #ebf6f4;
+@light-blue: #EDF4FF;
+@bright-blue: #4f94ef;
+@table-color: #eee;
+
+/* ------------- [END Color variables] -------------- */
+
+
+
+/* ------------- [START General mixins] ------------- */
+
+.transform(@val) {
+    -moz-transform:    @val;
+    -webkit-transform: @val;
+    -o-transform:      @val;
+    -ms-transform:     @val;
+    transform:         @val;
+}
+
+.translate3d(@x, @y, @z) {
+    -webkit-transform: translate3d(@x, @y, @z);
+    -moz-transform:    translate3d(@x, @y, @z);
+    transform:         translate3d(@x, @y, @z);
+}
+
+.border-radius(@top-l, @top-r, @bottom-r, @bottom-l) {
+    -webkit-border-radius: @top-l @top-r @bottom-r @bottom-l;
+    border-radius: @top-l @top-r @bottom-r @bottom-l;
+}
+
+.gradient(@top, @bottom) {
+    background: @top;
+    background: -moz-linear-gradient(top, @top 0%,  @bottom 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @top), color-stop(100%, @bottom));
+    background: -webkit-linear-gradient(top, @top 0%, @bottom 100%);
+    background: -o-linear-gradient(top, @top 0%, @bottom 100%);
+    background: -ms-linear-gradient(top, @top 0%, @bottom 100%);
+    background: linear-gradient(to bottom, @top 0%, @bottom 100%);
+}
+
+.box-shadow(@angle, @distance, @blur, @color) {
+    -webkit-box-shadow: @angle @distance @blur @color;
+    -moz-box-shadow:    @angle @distance @blur @color;
+    box-shadow:         @angle @distance @blur @color;
+}
+
+.hide-button() {
+
+    margin: 0;
+    padding: 0;
+    width: auto;
+    color: #333;
+    font-size: 1em;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    &:hover,
+    &:active {
+        text-shadow: 0 0 0;
+    }
+
+}/*closes hide-button*/
+
+.content-w-blue-bkgrd(@margin-btm) {
+  padding: .2em 1em;
+  margin: 1em 0 @margin-btm 0;
+  line-height: 1.8em;
+  background: @light-blue;
+  .border-radius(15px, 15px, 15px, 15px);
+}
+
+/* ------------- [END General mixins] ------------- */
+
+
+
+/* ------------ [START General styles] ------------ */
+
+.text-red {
+    color: @red;
+}
+
+.text-yellow {
+    color: @yellow;
+}
+
+.text-green {
+    color: @green;
+}
+
+/* masking div for loading message */
+.loading-mask {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background-color: #333;
+    z-index: 2000;
+}
+
+/* div for loading message */
+.loading-msg {
+    margin: 30% 25%;
+    padding: 1em;
+    width: 50%;
+    background: #fff;
+    .border-radius(15px, 15px, 15px, 15px);
+    z-index: 2001;
+}
+
+/* class used for both mask and overlay divs */
+.loading-overlay {
+    position: fixed;
+    display: none;
+}
+
+/* class for divs with error messages (also include class used for signature pad) */
+.error-msg,
+#signature-container .error {
+    margin: 2.2em 0 1.5em 0;
+    padding: 1em;
+    font-weight: normal;
+    color: #333;
+    background: @light-red;
+    border: 1px solid @red;
+    .border-radius(8px, 8px, 8px, 8px);
+}
+
+/* change how left-aligned buttons are aligned (override jQuery mobile defaults) */
+.ui-btn.ui-btn-left {
+    position: relative;
+    float: left;
+    left: 0;
+    top: 0;
+}
+
+/* icon for notes (adding and editing) */
+.ui-page .ui-btn.ui-icon-note {
+
+    /* add note icon */
+    background: url('../img/note-icon-sprite.png') -2px center transparent;
+
+    /* have to point to sprite multiple times to override jquery mobile default */
+    &:hover {
+        background: url('../img/note-icon-sprite.png') 80px center transparent;
+    }
+    &:after {
+        background: transparent;
+    }
+
+    /* switch to edit note icon */
+    &.has-note {
+
+        background-position: 121px center;
+
+        &:hover {
+            background-position: 39px center;
+        }
+
+    }/*closes has-note*/
+
+}/*closes ui-icon-note*/
+
+/* ------------ [END General styles] -------------- */
+
+
+
+/* ------------ [START Global styles] ------------- */
+
+/* increase overall text size (overrides many jquery mobile default styles) */
+body {
+    font-size: 1em;
+}
+.ui-mobile label {
+    font-size: 1.1em;
+}
+.ui-btn {
+    font-size: 1em;
+}
+.ui-header .ui-btn,
+.ui-footer .ui-btn {
+    font-size: .85em;
+}
+.ui-listview>li p {
+    font-size: .9em;
+}
+.ui-btn-icon-notext {
+    width: 1.8em;
+}
+
+/* add page class for additional specificity */
+.ui-page {
+
+    border-top: 1px solid #ccc;
+
+    /* give buttons slight drop shadow */
+    .ui-btn {
+        .box-shadow(1px, 2px, 2px, #ddd);
+    }
+
+    /* space out text fields with div that surrounds them */
+    .ui-input-text {
+        margin-bottom: 1.2em;
+    }
+
+    /* div surrounding app header */
+    .ui-header {
+
+        .gradient(#f9f9f9, #e0e0e0);
+        .box-shadow(0, 1px, 8px, #bbb);
+        border-bottom: 1px solid #ccc;
+
+        /* only linked element is header logo, remove default btn styles here */
+        .logo-link,
+        .logo-link:hover,
+        .logo-link:active {
+            padding: 0;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        /* position basicgov logo*/
+        .header_logo {
+            margin: 4% 0 0 2%;
+            padding: .5% 1%;
+        }
+
+        /* override jquery mobile default style used in conjunction with classes below */
+        .ui-title {
+            margin: 0;
+            padding: .8em 0;
+        }
+
+            /* class for header element placed at right */
+            .header-right {
+                padding-right: 1%;
+                float: right;
+            }
+
+            /* class for header element placed at center (main title) */
+            .header-center {
+                font-size: 1.3em;
+            }
+
+        /* buttons in header to have no margin */
+        .ui-btn {
+            margin: 0;
+            padding: 0;
+        }
+
+    }/*close ui-header*/
+
+    /* app footer */
+    div[data-role="footer"] {
+
+        text-align: right;
+        .gradient(#f9f9f9, #e0e0e0);
+        .box-shadow(0, 1px, 8px, #bbb);
+        border-top: 1px solid #ddd;
+
+        /* for aligning certain elements to left instead */
+        .footer-left {
+            text-align: left;
+        }
+
+        /* footer buttons */
+        .ui-btn {
+            margin: 1%;
+        }
+
+    }/*closes data-role=footer*/
+
+}/*closes ui-page*/
+
+ input.ng-invalid, textarea.ng-invalid {
+    border: 1px solid @red !important;
+}
+
+.text-center {
+    text-align : center;
+}
+
+.relatedTo > a{
+    pointer-events : none;
+    text-decoration : none;
+    color : inherit;
+}
+/* ------------ [END Global styles] --------------- */
+
+
+
+/* ---------- [START Import stylesheets] ---------- */
+
+/* partials */
+@import "partial/bookmark.less";
+@import "partial/question-list.less";
+@import "partial/login.less";
+@import "partial/inspection-list.less";
+@import "partial/popups.less";
+@import "partial/tgap-summary.less";
+@import "partial/user-guide.less";
+
+/* pages */
+@import "page/checklist-page.less";
+
+/* ---------- [END Import stylesheets] ------------ */
+

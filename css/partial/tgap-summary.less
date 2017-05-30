@@ -1,0 +1,303 @@
+
+
+/* ------------- [START main checklist page] ------------- */
+
+#summary-page {
+
+  /* change button styles for buttons we want clickable but not visibly buttons */
+  .hidden-button {
+
+      .hide-button();
+
+      /* force display of note icon */
+      .ui-icon-note {
+          width: 37px;
+          height: 36px;
+          border: none;
+      }
+
+  }/*closes hidden-button*/
+
+}/*closes summary-page*/
+
+/* ------------- [END main checklist page] ------------- */
+
+
+
+/* ------------- [START tgap summary results] ------------- */
+
+#tgap-summary-results-container {
+
+  padding: .5em 0;
+  font-size: .9em;
+  text-align: center;
+  .border-radius(15px, 15px, 15px, 15px);
+  
+  div.ui-input-text {
+    display: inline-block;
+  }
+  
+  div#days-to-reinspection {
+    font-size: 1.3em;
+  }
+
+  /* background changes color based on inspection status */
+  &.status-Failed {
+    background: @light-red;
+    border: 1px solid @red;
+  }
+  &.status-Passed {
+    background: @light-green;
+    border: 1px solid @green;
+  }
+
+  /* space out iar/can counts */
+  span {
+    margin-left: .8em;
+  }
+
+  /* stop sale label */
+  label {
+    margin-right: 1.4em;
+    display: inline-block;
+    font-size: 1.3em;
+  }
+
+  .ui-select {
+    display: inline-block;
+  }
+
+  /* ui-flipswitch is stop sale div around input */
+  .ui-flipswitch {
+
+    font-size: .7em;
+
+    span {
+      margin: 0;
+    }
+
+  }/*closes ui-flipswitch*/
+
+  form {
+    display: inline-block;
+  }
+
+}/*closes tgap-summary-results-container*/
+
+span.statusLabel	{
+	/*float:	left;*/
+	padding:	12px;
+	}
+
+div#select-22-button	{
+	float:left;
+	line-height:	1em;
+	padding:	12px 46px 12px 12px;
+	}
+	
+.labelCount	{
+	display:	inline-block;
+	padding:	12px;
+	}
+
+/* -------------- [END tgap summary results] -------------- */
+
+
+
+/* ------------ [START tgap summary tables] --------------- */
+
+#summary-page {
+
+  /* tables contain iar/can and notes info */
+  table {
+
+    margin: 2em 0;
+    display: table;
+    width:	100%;
+
+    /* table heading */
+    caption {
+      margin: 0;
+      text-align: center;
+      font-size: 1.1em;
+      opacity: 1;
+      background: @table-color;
+      border: 8px solid @table-color;
+    }
+
+    /* center narrow columns i.e. iar, can, view */
+    .col-center {
+      width: 5%;
+      text-align: center;
+    }
+
+    /* override jquery mobile default button margins */
+    .ui-btn {
+      margin: 0;
+    }
+
+    /* table column header row to have added separation */
+    thead tr {
+      border-bottom: 8px solid @table-color;
+    }
+
+    /* table column headers */
+    th {
+      text-align: left;
+    }
+
+    td {
+
+      line-height: 1.3em;
+
+      /* last column view icon is vertically centered */
+      &:last-child {
+        vertical-align: middle;
+      }
+
+    }/*closes td*/
+
+    th,
+    td {
+      border: 2px solid @table-color;
+    }
+
+    /* thicker border on left side */
+    th:first-child,
+    td:first-child {
+      border-left: 8px solid @table-color;
+    }
+
+    /* thicker border on right side */
+    th:last-child,
+    td:last-child {
+      border-right: 8px solid @table-color;
+    }
+
+  }/*closes table*/
+
+  /* create more spacing for last row of re-inspection table */
+  #tgap-unanswered-table tbody tr:last-child {
+    border-bottom: 8px solid @table-color;
+  }
+
+  /* styles specific to first table */
+  #tgap-iar-can-table {
+
+    /* create more spacing for overall/totals row */
+    tbody tr:last-child {
+      border: 8px solid @table-color;
+      border-left: 0;
+      border-right: 0;
+    }
+
+    td {
+
+      padding: 1em .5em;
+
+      /* edit icons to the left */
+      .ui-icon-edit {
+        float: left;
+        margin: .2em .5em 0 0;
+      }
+
+    }/*closes td*/
+
+  }/*closes tgap-iar-can-table*/
+
+  /* styles specific to second table */
+  #tgap-note-detail-table {
+
+    /* create border for last row */
+    tbody tr:last-child {
+      border-bottom: 8px solid @table-color;
+    }
+
+  }/*closes tgap-note-detail-table*/
+
+  /* force height on footer for view mode */
+  .ui-footer {
+    min-height: 58px;
+  }
+
+}/*closes summary-page*/
+
+#summary-container table th:nth-child(3)	{
+		width:40%;
+		}
+
+
+
+/* ------------- [END tgap summary tables] ---------------- */
+
+
+
+/* --------------- [START tgap signature] ----------------- */
+
+/* div for content displayed in place of signature (when inspection is still underway) */
+.underway {
+  .content-w-blue-bkgrd(1em);
+}
+
+/* div surrounding signature section */
+.signature {
+
+  .content-w-blue-bkgrd(8em);
+
+  /* text fields for signature (respondent name, email addresses) */
+  .ui-input-text {
+    margin-bottom: 0;
+    display: inline-block;
+    width: 30%;
+    font-size: 1.1em;
+  }
+
+  /* add relative positioning to div around signature to prevent Android styling problem with absolute positioning post-signing */
+  #signature-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* class applied to canvas */
+  .pad {
+    margin-bottom: 2em;
+  }
+
+  /* close inspection button to the right */
+  .ui-btn.close {
+    margin-top: -3.25em;
+    float: right;
+  }
+
+}/*closes signature*/
+
+/* --------------- [START tgap signature] ----------------- */
+
+/* DPS Image Thumbnails */
+
+#image-list-container img	{
+   max-width:	150px;
+   max-height:	150px;
+ }
+
+#image-list-container{
+  li {
+    list-style-type: none;
+  }
+
+  button {
+    top: -35px;
+  }
+}
+
+.sigcanvas {
+  width : 400px;
+  height : 150px;
+  margin : 0 auto;
+
+  .pad {
+    width : 100%;
+    height : 100%;
+  }
+}
+

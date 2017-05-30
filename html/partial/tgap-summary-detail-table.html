@@ -1,0 +1,90 @@
+﻿<table data-role="table" class="ui-responsive" id="tgap-unanswered-table" ng-show="$parent.inspection.isReinspection">
+    <caption>Past Non-Compliant Questions To Address</caption>
+    <thead>
+        <tr>
+            <th ng-if="!isViewMode">View</th>
+            <th>Question</th>
+            <th>Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="answer in unansweredAnswers">
+            <td class="col-center" ng-if="!isViewMode">
+                <button ng-click="goToQuestion(answer.question)" class="ui-btn ui-btn-e ui-btn-inline ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></button>
+            </td>
+            <td>
+                {{answer.question.number}} {{answer.question.title}}
+            </td>
+            <td>
+                {{answer.Comments}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table data-role="table" class="ui-responsive" id="tgap-iar-can-table" ng-show="unsatAnswers.length > 0">
+    <caption><span ng-show="$parent.inspection.isReinspection">New</span> Fail Questions</caption>
+    <thead>
+        <tr>
+            <th ng-if="!isViewMode">View</th>
+            <th>Question</th>
+            <th>Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="answer in unsatAnswers">
+            <td class="col-center" ng-if="!isViewMode">
+                <button data-direction="reverse" ng-click="goToQuestion(answer.question)" class="ui-btn ui-btn-e ui-btn-inline ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></button>
+            </td>
+            <td>
+                {{answer.question.number}} {{answer.question.title}}
+            </td>
+            <td>
+                {{answer.Comments}}
+            </td>
+        </tr>
+        <tr class="summary-totals">
+            <td ng-if="!isViewMode" class="col-center" colspan="2"><strong>Totals</strong></td>
+            <td ng-if="isViewMode" class="col-center"><strong>Totals</strong></td>
+            <td class="col-center"><span class="text-red">{{$parent.unsatCount}} Fail </span></td>
+        </tr>
+    </tbody>
+</table>
+
+<table data-role="table" class="ui-responsive ui-table" id="tgap-note-detail-table" ng-show="noteAnswers.length > 0 || $parent.inspection.Notes">
+    <caption>Inspection Comments</caption>
+    <thead>
+        <tr>
+            <th ng-if="!isViewMode">View</th>
+            <th>Question</th>
+            <th ng-if="!isViewMode">Comments</th>
+            <th ng-if="isViewMode" colspan="2">Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-show="$parent.inspection.Notes">
+            <td ng-if="!isViewMode" class="col-center">&mdash;</td>
+            <td>
+                <em>Overall Inspection Comments</em>
+            </td>
+            <td>
+                {{$parent.inspection.Notes}}
+            </td>
+        </tr>
+        <tr ng-repeat="answer in noteAnswers">
+            <td class="col-center" ng-if="!isViewMode">
+                <a href="#main-checklist-page" ng-click="goToQuestion(answer.question)" class="ui-btn ui-btn-e ui-btn-inline ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></a>
+            </td>
+            <td>
+                {{answer.question.number}} {{answer.question.title}}
+            </td>
+            <td ng-if="!isViewMode">
+                {{answer.Comments}}
+            </td>
+            <td ng-if="isViewMode" colspan="2">
+                {{answer.Comments}}
+            </td>
+        </tr>
+    </tbody>
+</table>

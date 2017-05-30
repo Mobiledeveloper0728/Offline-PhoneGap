@@ -1,0 +1,38 @@
+﻿<form name="questionListForm" id="question-list-form" action="javascript: return false;">
+    <table data-role="table" data-mode="reflow" class="ui-responsive" id="question-list-table">
+        <thead><tr><th></th></tr></thead> <!--This has to be here, otherwise jQuery will crash.-->
+        <tbody>
+            <tr ng-repeat="question in questions" data-questionid="{{question.id}}" data-pageid="{{question.pageId}}">
+                <td>
+                    <div>
+                        <div class="question-title">
+                            <h3>{{question.number}} {{question.title}}</h3>
+                        </div>
+                        <div class="question-content-container">
+                            <div class="question-content">
+                                <p ng-bind-html="trustAsHtml(question.body)">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="question-more-info">
+                            <a href="" ng-click="$emit('questionExtrasClick', question)">more&nbsp;&raquo;</a>
+                        </div>
+                        <div class="radio-buttons" data-enhance="false">
+                            <!--<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">-->
+                            <span ng-repeat="choice in question.answer.choices">
+                                <input ng-model="question.choices.value" ng-change="saveLocally(question, choice, null)" type="radio" name="answer-choice-{{question.id}}" id="answer-choice-{{choice.label}}-{{question.id}}" value="{{choice.label}}" required ng-checked="((isReinspection && question.thisAnswer.Response != 'Unsatisfactory') || isResume) && choice.label == question.thisAnswer.Response" />
+                                <label for="answer-choice-{{choice.label}}-{{question.id}}">
+                                    {{choice.label}}
+                                </label>
+                                <input type="hidden" name="is-optional-{{question.id}}" value="{{question.isOptional}}" />
+                            </span>
+                            <!--</fieldset>-->
+                        <button ng-click="addNotes(question, question.title, $event)" ng-class="{'ui-btn ui-icon-note ui-btn-icon-notext ui-corner-all has-note' : question.thisAnswer.Comments, 'ui-btn ui-icon-note ui-btn-icon-notext ui-corner-all' : !question.thisAnswer.Comments}"></button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+

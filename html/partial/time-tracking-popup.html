@@ -1,0 +1,67 @@
+﻿<div data-role="popup" id="time-tracking-popup" data-overlay-theme="b" data-theme="b" data-dismissible="false">
+    <div data-role="header" data-theme="a">
+        <h1>{{title}}</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <form novalidate name="timeTrackingForm" action="javascript: return false;">
+            <div class="ui-grid-a">
+                <label>Travel Time To/From Site (Minutes)<span class="text-red">*</span></label>
+                <input type="number" min="0" max="480" name="travelTimeMin" data-theme="a" ng-model="travelTimeMin" onkeypress="return window.validateNumber(event);" required>
+            </div>
+            <div class="ui-grid-a" ng-if="showBreakTime">
+                <label>Break Time On Site (Minutes)<span class="text-red">*</span></label>
+                <div class="ui-input-text ui-body-a ui-corner-all ui-shadow-inset">
+                    <input type="number" min="0" max="480" name="breakTimeMin" data-theme="a" ng-model="$parent.breakTimeMin" onkeypress="return window.validateNumber(event);" required>
+                </div>
+            </div>
+            <div class="ui-grid-a short-input" ng-if="showEndTime">
+                <label>Change End Time? (24 Hour Format)<span class="text-red">*</span></label>
+                <div class="ui-block-a">
+                    <div class="ui-input-text ui-body-a ui-corner-all ui-shadow-inset">
+                        <input type="number" min="0" max="24" name="endTimeHr" data-theme="a" ng-model="$parent.endTimeHr" onkeypress="return window.validateNumber(event);" required>
+                    </div>
+                    <strong>:</strong>
+                </div>
+                <div class="ui-block-b">
+                    <div class="ui-input-text ui-body-a ui-corner-all ui-shadow-inset">
+                        <input type="text" name="endTimeMin" data-theme="a" ng-model="$parent.endTimeMin" onkeypress="return window.validateNumber(event);" required>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="!status || status != 'Passed'">
+                <label>Schedule Next Inspection Date?</label>
+                <input type="date" data-role="date" name="reinspectionDate" data-theme="a" ng-model="reinspectionDate" value="">
+            </div>
+			<div ng-if="showNote">
+                <label>General Inspection Notes<span class="text-red">*</span></label>
+                <textarea cols="65" ng-model="$parent.inspection.Notes" name="inspectionNotes" required>{{$parent.inspection.Notes}}</textarea>
+            </div>
+            <div class="error-msg" ng-show="isEndInspection && showErrors && (timeTrackingForm.endTimeHr.$error.endEarlierThanStart || !timeTrackingForm.travelTimeMin.$valid || endTimeMin > 59)">
+                To finish:
+                <ul>
+                    <li ng-if="timeTrackingForm.endTimeHr.$error.endEarlierThanStart">Use an end time later than the start time.</li>
+                    <li ng-if="timeTrackingForm.travelTimeMin.$error.required">Add travel time minutes.</li>
+                    <li ng-if="timeTrackingForm.travelTimeMin.$error.max">Travel time cannot be more than 480 minutes.</li>
+                    <li ng-if="timeTrackingForm.breakTimeMin.$error.required">Add break time minutes.</li>
+                    <li ng-if="timeTrackingForm.breakTimeMin.$error.max">Travel time cannot be more than 480 minutes.</li>
+                    <li ng-if="endTimeMin > 60">End time minute cannot be greater than 59.</li>
+                </ul>
+            </div>
+            <div class="error-msg" ng-show="isCancelInspection && showErrors && (!timeTrackingForm.$valid || endTimeMin > 59)">
+                <ul>
+                    <li ng-if="timeTrackingForm.travelTimeMin.$error.required">Please add travel time minutes.</li>
+                    <li ng-if="timeTrackingForm.travelTimeMin.$error.max">Travel time cannot be more than 480 minutes.</li>
+                    <li ng-if="timeTrackingForm.inspectionNotes.$error.required">Enter a comment explaining this cancel.</li>
+                    <li ng-if="endTimeMin > 60">End time minute cannot be greater than 59.</li>
+                </ul>
+            </div>
+            <div class="pop-up-buttons ui-corner-all">
+                <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Cancel</a>
+                <button class="ui-btn btn-right ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-btn-icon-left ui-icon-check" ng-click="finish()">
+                    Finish
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

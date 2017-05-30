@@ -1,0 +1,70 @@
+
+
+/* ------------ [START popups] -------------- */
+
+/* notes pop-up should not scroll with page -- REMOVED
+.ui-popup-container {
+    position: fixed;
+    top: 4em !important;
+}*/
+
+/* notes pop-up near top of page */
+#note-popup-popup {
+    top: 20px !important;
+    position: fixed !important;
+    /*#field-note {
+        height: 4em !important;
+        overflow-y: scroll !important;
+    }*/
+}
+
+/* pop-up header matches app header */
+.ui-popup > .ui-header {
+
+    .gradient(#f9f9f9, #e0e0e0);
+    .box-shadow(0, 1px, 8px, #bbb);
+    border-bottom: 1px solid #ccc;
+
+    /* pop-up title */
+    h1 {
+        margin: 0;
+        padding: 1em .5em;
+        font-size: 1.1em;
+    }
+
+}/*closes ui-popup ui-header*/
+
+/* create short text inputs for pop-up windows */
+.short-input .ui-input-text {
+    margin: 0 0 1em 0;
+    width: 80%;
+    display: inline-block;
+}
+
+/* div surrounding bottom buttons for pop-up windows */
+.pop-up-buttons {
+
+    margin: 2.8em -1.25em -1.25em -1.25em;
+    padding: 1.5%;
+    font-size: .8em;
+    .gradient(#f9f9f9, #e0e0e0);
+    .box-shadow(0, 1px, 8px, #bbb);
+    border-top: 1px solid #ddd;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    /* no extra spacing for buttons */
+    .ui-btn {
+        margin: 0;
+        font-size: 1.2em;
+    }
+
+    /* buttons placed on left and right */
+    .btn-right {
+        float: right;
+    }
+
+}/*closes ui-popup-container*/
+
+/* ------------ [END popups] -------------- */
+

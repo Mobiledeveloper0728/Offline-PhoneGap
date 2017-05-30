@@ -1,0 +1,1099 @@
+/* ------------- [START Color variables] ------------ */
+/* ------------- [START Color variables] ------------ */
+/* ------------- [END Color variables] -------------- */
+/* ------------- [START General mixins] ------------- */
+/*closes hide-button*/
+/* ------------- [END General mixins] ------------- */
+/* ------------ [START General styles] ------------ */
+.text-red {
+  color: #dc3054;
+}
+.text-yellow {
+  color: #f1c232;
+}
+.text-green {
+  color: #00ad8f;
+}
+/* masking div for loading message */
+.loading-mask {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background-color: #333;
+  z-index: 2000;
+}
+/* div for loading message */
+.loading-msg {
+  margin: 30% 25%;
+  padding: 1em;
+  width: 50%;
+  background: #fff;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border-radius: 15px 15px 15px 15px;
+  z-index: 2001;
+}
+/* class used for both mask and overlay divs */
+.loading-overlay {
+  position: fixed;
+  display: none;
+}
+/* class for divs with error messages (also include class used for signature pad) */
+.error-msg,
+#signature-container .error {
+  margin: 2.2em 0 1.5em 0;
+  padding: 1em;
+  font-weight: normal;
+  color: #333;
+  background: #fbf0f3;
+  border: 1px solid #dc3054;
+  -webkit-border-radius: 8px 8px 8px 8px;
+  border-radius: 8px 8px 8px 8px;
+}
+/* change how left-aligned buttons are aligned (override jQuery mobile defaults) */
+.ui-btn.ui-btn-left {
+  position: relative;
+  float: left;
+  left: 0;
+  top: 0;
+}
+/* icon for notes (adding and editing) */
+.ui-page .ui-btn.ui-icon-note {
+  /* add note icon */
+
+  background: url('../img/note-icon-sprite.png') -2px center transparent;
+  /* have to point to sprite multiple times to override jquery mobile default */
+
+  /* switch to edit note icon */
+
+  /*closes has-note*/
+
+}
+.ui-page .ui-btn.ui-icon-note:hover {
+  background: url('../img/note-icon-sprite.png') 80px center transparent;
+}
+.ui-page .ui-btn.ui-icon-note:after {
+  background: transparent;
+}
+.ui-page .ui-btn.ui-icon-note.has-note {
+  background-position: 121px center;
+}
+.ui-page .ui-btn.ui-icon-note.has-note:hover {
+  background-position: 39px center;
+}
+/*closes ui-icon-note*/
+/* ------------ [END General styles] -------------- */
+/* ------------ [START Global styles] ------------- */
+/* increase overall text size (overrides many jquery mobile default styles) */
+body {
+  font-size: 1.2em;
+}
+.ui-mobile label {
+  font-size: 1.1em;
+}
+.ui-btn {
+  font-size: 1em;
+}
+.ui-header .ui-btn,
+.ui-footer .ui-btn {
+  font-size: .85em;
+}
+.ui-listview > li p {
+  font-size: .9em;
+}
+.ui-btn-icon-notext {
+  width: 1.8em;
+}
+/* add page class for additional specificity */
+.ui-page {
+  border-top: 1px solid #ccc;
+  /* give buttons slight drop shadow */
+
+  /* space out text fields with div that surrounds them */
+
+  /* div surrounding app header */
+
+  /*close ui-header*/
+
+  /* app footer */
+
+  /*closes data-role=footer*/
+
+}
+.ui-page .ui-btn {
+  -webkit-box-shadow: 1px 2px 2px #dddddd;
+  -moz-box-shadow: 1px 2px 2px #dddddd;
+  box-shadow: 1px 2px 2px #dddddd;
+}
+.ui-page .ui-input-text {
+  margin-bottom: 1.2em;
+}
+.ui-page .ui-header {
+  background: #f9f9f9;
+  background: -moz-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9f9f9), color-stop(100%, #e0e0e0));
+  background: -webkit-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -o-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -ms-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: linear-gradient(to bottom, #f9f9f9 0%, #e0e0e0 100%);
+  -webkit-box-shadow: 0 1px 8px #bbbbbb;
+  -moz-box-shadow: 0 1px 8px #bbbbbb;
+  box-shadow: 0 1px 8px #bbbbbb;
+  border-bottom: 1px solid #ccc;
+  /* only linked element is header logo, remove default btn styles here */
+
+  /* position basicgov logo*/
+
+  /* override jquery mobile default style used in conjunction with classes below */
+
+  /* class for header element placed at right */
+
+  /* class for header element placed at center (main title) */
+
+  /* buttons in header to have no margin */
+
+}
+.ui-page .ui-header .logo-link,
+.ui-page .ui-header .logo-link:hover,
+.ui-page .ui-header .logo-link:active {
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+.ui-page .ui-header .header_logo {
+  margin: 4% 0 0 2%;
+  padding: .5% 1%;
+}
+.ui-page .ui-header .ui-title {
+  margin: 0;
+  padding: .8em 0;
+}
+.ui-page .ui-header .header-right {
+  padding-right: 1%;
+  float: right;
+}
+.ui-page .ui-header .header-center {
+  font-size: 1.3em;
+}
+.ui-page .ui-header .ui-btn {
+  margin: 0;
+  padding: 0;
+}
+.ui-page div[data-role="footer"] {
+  text-align: right;
+  background: #f9f9f9;
+  background: -moz-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9f9f9), color-stop(100%, #e0e0e0));
+  background: -webkit-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -o-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -ms-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: linear-gradient(to bottom, #f9f9f9 0%, #e0e0e0 100%);
+  -webkit-box-shadow: 0 1px 8px #bbbbbb;
+  -moz-box-shadow: 0 1px 8px #bbbbbb;
+  box-shadow: 0 1px 8px #bbbbbb;
+  border-top: 1px solid #ddd;
+  /* for aligning certain elements to left instead */
+
+  /* footer buttons */
+
+}
+.ui-page div[data-role="footer"] .footer-left {
+  text-align: left;
+}
+.ui-page div[data-role="footer"] .ui-btn {
+  margin: 1%;
+}
+/*closes ui-page*/
+input.ng-invalid,
+textarea.ng-invalid {
+  border: 1px solid #dc3054 !important;
+}
+/* ------------ [END Global styles] --------------- */
+/* ---------- [START Import stylesheets] ---------- */
+/* partials */
+/* ------------- [START bookmarks] ------------- */
+#bookmarks-collapse-container,
+#bookmarks-expand-container {
+  /* bookmarks to scroll separate from rest of the page */
+
+  position: fixed;
+  top: 5em;
+  min-height: 0;
+  max-height: 590px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-box-shadow: 0 1px 8px #bbbbbb;
+  -moz-box-shadow: 0 1px 8px #bbbbbb;
+  box-shadow: 0 1px 8px #bbbbbb;
+  /* styling for each section on link tag */
+
+  /* section header for bookmarks */
+
+  /* selected/scrolling section */
+
+}
+#bookmarks-collapse-container li a,
+#bookmarks-expand-container li a {
+  color: #333;
+  font-weight: normal;
+  text-shadow: 0 -1px 0 #b7b7b7;
+  background: #D9D9D9;
+  border: 4px solid #b7b7b7;
+  border-right-width: 6px;
+  border-left-width: 6px;
+}
+#bookmarks-collapse-container .ui-first-child a,
+#bookmarks-expand-container .ui-first-child a {
+  font-weight: bold;
+  background: #b7b7b7;
+}
+#bookmarks-collapse-container .active a,
+#bookmarks-expand-container .active a {
+  background: #fff;
+}
+/*closes bookmarks*/
+/* surrounds collapsed bookmark */
+#bookmarks-collapse-container {
+  visibility: visible;
+  -moz-transform: none !important;
+  -webkit-transform: none !important;
+  -o-transform: none !important;
+  -ms-transform: none !important;
+  transform: none !important;
+  z-index: 1000;
+}
+/* surrounds expanded bookmark */
+#bookmarks-expand-container {
+  z-index: 1010;
+  /* sections need to wrap */
+
+}
+#bookmarks-expand-container li a {
+  white-space: normal;
+}
+/*closes bookmarks-expand-container*/
+/* main content allows for collapsed bookmark as sidebar */
+#main-checklist-page .ui-content {
+  margin-left: 145px;
+}
+/* section-completed is div for checkmark */
+.section-completed-,
+.section-completed-true {
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+}
+.section-completed-true {
+  background-image: url('partial/partial/../img/checkmark.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+/* jQuery mobile overrrides*/
+div[data-role="header"],
+div[data-role="footer"] {
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  margin-right: 0 !important;
+}
+/* ------------- [END bookmarks] ------------- */
+/* ------------- [START question extras] ------------- */
+/* div surrounding question details page */
+#question-extra-container {
+  /* override jquery mobile style */
+
+  /* each info section is a li */
+
+  /*closes li*/
+
+  /* p tag corrective actions note with link to Summary Screen */
+
+  /*closes actions-note*/
+
+}
+#question-extra-container .ui-listview {
+  margin: 0;
+}
+#question-extra-container li {
+  margin: 1%;
+  padding: 2%;
+  width: 44%;
+  min-height: 220px;
+  float: left;
+  background: #edf4ff;
+  border: 0;
+  /* span contains the icon */
+
+  /*closes span*/
+
+  /* heading for each info section */
+
+  /* text for each info section contained in one p tag */
+
+}
+#question-extra-container li span {
+  margin: .2em 0 0 0;
+  float: left;
+  background: #333;
+  border: none;
+}
+#question-extra-container li span:hover {
+  background: #333;
+}
+#question-extra-container li h2 {
+  padding-left: .6em;
+  border-bottom: 2px solid;
+}
+#question-extra-container li p {
+  margin: .8em 0 0 .4em;
+  font-size: 1em;
+  white-space: normal;
+}
+#question-extra-container .actions-note {
+  padding-right: 1em;
+  text-align: right;
+}
+#question-extra-container .actions-note button {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  color: #333;
+  font-size: 1em;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #4f94ef;
+}
+#question-extra-container .actions-note button:hover,
+#question-extra-container .actions-note button:active {
+  text-shadow: 0 0 0;
+}
+/*closes question-extra-container*/
+/* ------------- [END question extras] ------------- */
+/* ------------- [START question list] ------------- */
+/* div that surrounds question content area (does not include bookmarks) */
+#question-container {
+  padding: 0;
+  /*closes table*/
+
+}
+#question-container table {
+  /* alternating colours for questions */
+
+  /* a question */
+
+  /*closes td*/
+
+}
+#question-container table thead {
+  display: none;
+}
+#question-container table tbody tr:nth-child(even) td {
+  background-color: #edf4ff;
+}
+#question-container table td {
+  padding: 1em 1em 2.5em 2em;
+  /* div for title */
+
+  /*closes question-title*/
+
+  /* div for main content */
+
+  /*closes question-content-container*/
+
+  /* div for prior corrective actions */
+
+  /* div for more info link */
+
+  /*closes question-more-info*/
+
+  /* div that surrounds radio button answers */
+
+  /*closes radio-button*/
+
+}
+#question-container table td .question-title {
+  /* notes icon */
+
+}
+#question-container table td .question-title h3 {
+  margin-bottom: 0.2em;
+  display: inline-block;
+}
+#question-container table td .question-title button {
+  float: right;
+  width: 37px;
+  height: 36px;
+  border: none;
+  box-shadow: none;
+  margin-right:	80px;
+}
+#question-container table td .question-content-container {
+  width: 100%;
+  /* div for actual question */
+
+}
+#question-container table td .question-content-container div {
+  display: table-cell;
+}
+#question-container table td .question-content-container .question-content {
+  padding-right: 1em;
+  width: 100%;
+}
+#question-container table td .corrective-action-container {
+  margin-bottom: 1em;
+  font-style: italic;
+}
+#question-container table td .question-more-info {
+  display:	none;
+  margin-top: 1em;
+  float: right;
+}
+#question-container table td .question-more-info a {
+  color: #4f94ef;
+  font-size: 1.05em;
+  text-decoration: none;
+}
+#question-container table td .radio-buttons {
+  /* input label pairs contained in span */
+
+  /*closes span*/
+	white-space:	nowrap;
+}
+#question-container table td .radio-buttons span {
+  display: inline-block;
+  /* hide actual radio selector */
+
+  /*closes input*/
+
+  /* rounded borders for first and last item, no double-borders in between*/
+
+  /* create button look for label */
+
+  /*closes label*/
+
+}
+#question-container table td .radio-buttons span input[type=radio] {
+  display: none;
+  /* show selected answers */
+
+}
+#question-container table td .radio-buttons span input[type=radio]:checked + label {
+  color: #fff;
+  background: #4f94ef;
+}
+#question-container table td .radio-buttons span:first-child label {
+  -webkit-border-radius: 10px 0 0 10px;
+  border-radius: 10px 0 0 10px;
+}
+#question-container table td .radio-buttons span:last-child label {
+  -webkit-border-radius: 0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
+}
+#question-container table td .radio-buttons span + span label {
+  border-left: none;
+}
+#question-container table td .radio-buttons span label {
+  display: inline-block;
+  margin: 0;
+  padding: .7em 2.6em;
+  color: #4f94ef;
+  font-size: 1.2em;
+  text-align: center;
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid #4f94ef;
+}
+#question-container table td .radio-buttons span label:hover,
+#question-container table td .radio-buttons span label:active {
+  background: #edf4ff;
+}
+/*closes question-container*/
+/* ------------- [END question list] ------------- */
+/* ------------- [START login] ------------- */
+#login-page {
+  /*position header img, user guide link */
+
+  /*closes ui-block-a*/
+
+  /* position login fields with div that surrounds them */
+
+  /* org name in heading */
+
+  /*closes org-name*/
+
+  /* right align login button */
+
+}
+#login-page .ui-block-a {
+  padding: 2%;
+  float: none;
+}
+#login-page .ui-block-a h2 {
+  margin: .55em;
+}
+#login-page .ui-block-b {
+  clear: both;
+  margin: 2em 0 0 25%;
+  width: 50%;
+}
+#login-page .org-name {
+  float: right;
+  font-weight: normal;
+}
+#login-page .ui-btn {
+  margin-right: 0;
+  float: right;
+}
+/*closes login-page*/
+/* ------------- [END login] ------------- */
+/* ------------- [START inspection-list] ------------- */
+#inspection-list-page {
+  /* div for empty state message (has to be fixed to accommodate previously loaded long page) */
+
+  /* every other inspection background changes colour */
+
+  /*closes ui-listview li*/
+
+  /* audit/inspection # header */
+
+  /* spacing for fields */
+
+  /*closes ui-grid-a*/
+
+  /* override jquery mobile default style */
+
+  /* color for failed or passed inspection statuses */
+
+  /* position cancel/start buttons */
+
+  /*closes list-buttons*/
+
+  /* highlight address */
+
+  /* class for span wrapping offline status display */
+
+}
+#inspection-list-page .no-inspections {
+  margin: 1em 15%;
+  padding: 1em 2em;
+  position: fixed;
+  width: 60%;
+  background: #edf4ff;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border-radius: 15px 15px 15px 15px;
+}
+#inspection-list-page .ui-listview li {
+  padding: 1em;
+}
+#inspection-list-page .ui-listview li:nth-child(even) {
+  background: #edf4ff;
+}
+#inspection-list-page h3 {
+  margin-bottom: .7em;
+  font-size: 1.05em;
+  border-bottom: 2px solid #333;
+}
+#inspection-list-page .ui-grid-a {
+  margin-bottom: .3em;
+  /* labels for fields displayed for inspections */
+
+  /*closes b*/
+
+}
+#inspection-list-page .ui-grid-a b {
+  font-weight: normal;
+  /* colon follows label */
+
+}
+#inspection-list-page .ui-grid-a b:after {
+  content: '\3A';
+}
+#inspection-list-page .ui-listview > .ui-li-static {
+  white-space: normal;
+}
+#inspection-list-page .inspection-result-Failed {
+  color: #dc3054;
+}
+#inspection-list-page .inspection-result-Passed {
+  color: #00ad8f;
+}
+#inspection-list-page .list-buttons {
+  text-align: right;
+}
+#inspection-list-page .list-buttons p {
+  margin: 0 .5em 0 0;
+}
+#inspection-list-page .bigger-text {
+  font-size: 1.2em;
+}
+#inspection-list-page .offline-status {
+  padding-right: 1em;
+  color: #bbb;
+  font-style: italic;
+}
+/*closes inspection-list-page*/
+/* ------------- [END inspection-list] --------------- *//* ------------ [START popups] -------------- */
+/* notes pop-up should not scroll with page -- REMOVED
+.ui-popup-container {
+    position: fixed;
+    top: 4em !important;
+}*/
+/* notes pop-up near top of page */
+#note-popup-popup {
+  top: 20px !important;
+  position: fixed !important;
+  /*#field-note {
+        height: 4em !important;
+        overflow-y: scroll !important;
+    }*/
+
+}
+/* pop-up header matches app header */
+.ui-popup > .ui-header {
+  background: #f9f9f9;
+  background: -moz-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9f9f9), color-stop(100%, #e0e0e0));
+  background: -webkit-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -o-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -ms-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: linear-gradient(to bottom, #f9f9f9 0%, #e0e0e0 100%);
+  -webkit-box-shadow: 0 1px 8px #bbbbbb;
+  -moz-box-shadow: 0 1px 8px #bbbbbb;
+  box-shadow: 0 1px 8px #bbbbbb;
+  border-bottom: 1px solid #ccc;
+  /* pop-up title */
+
+}
+.ui-popup > .ui-header h1 {
+  margin: 0;
+  padding: 1em .5em;
+  font-size: 1.1em;
+}
+/*closes ui-popup ui-header*/
+/* create short text inputs for pop-up windows */
+.short-input .ui-input-text {
+  margin: 0 0 1em 0;
+  width: 80%;
+  display: inline-block;
+}
+/* div surrounding bottom buttons for pop-up windows */
+.pop-up-buttons {
+  margin: 2.8em -1.25em -1.25em -1.25em;
+  padding: 1.5%;
+  font-size: .8em;
+  background: #f9f9f9;
+  background: -moz-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9f9f9), color-stop(100%, #e0e0e0));
+  background: -webkit-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -o-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: -ms-linear-gradient(top, #f9f9f9 0%, #e0e0e0 100%);
+  background: linear-gradient(to bottom, #f9f9f9 0%, #e0e0e0 100%);
+  -webkit-box-shadow: 0 1px 8px #bbbbbb;
+  -moz-box-shadow: 0 1px 8px #bbbbbb;
+  box-shadow: 0 1px 8px #bbbbbb;
+  border-top: 1px solid #ddd;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  /* no extra spacing for buttons */
+
+  /* buttons placed on left and right */
+
+}
+.pop-up-buttons .ui-btn {
+  margin: 0;
+  font-size: 1.2em;
+}
+.pop-up-buttons .btn-right {
+  float: right;
+}
+/*closes ui-popup-container*/
+/* ------------ [END popups] -------------- */
+/* ------------- [START main checklist page] ------------- */
+#summary-page {
+  /* change button styles for buttons we want clickable but not visibly buttons */
+
+  /*closes hidden-button*/
+
+}
+#summary-page .hidden-button {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  color: #333;
+  font-size: 1em;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  /* force display of note icon */
+
+}
+#summary-page .hidden-button:hover,
+#summary-page .hidden-button:active {
+  text-shadow: 0 0 0;
+}
+#summary-page .hidden-button .ui-icon-note {
+  width: 37px;
+  height: 36px;
+  border: none;
+}
+/*closes summary-page*/
+/* ------------- [END main checklist page] ------------- */
+/* ------------- [START tgap summary results] ------------- */
+#tgap-summary-results-container {
+  padding: .5em 0;
+  font-size: .9em;
+  text-align: center;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border-radius: 15px 15px 15px 15px;
+  /* background changes color based on inspection status */
+
+  /* space out iar/can counts */
+
+  /* stop sale label */
+
+  /* ui-flipswitch is stop sale div around input */
+
+  /*closes ui-flipswitch*/
+
+}
+#tgap-summary-results-container.status-Failed {
+  background: #fbf0f3;
+  border: 1px solid #dc3054;
+}
+#tgap-summary-results-container.status-Passed {
+  background: #ebf6f4;
+  border: 1px solid #00ad8f;
+}
+#tgap-summary-results-container span {
+  margin-left: .8em;
+}
+#tgap-summary-results-container label {
+  margin-left: 2em;
+  display: inline-block;
+  font-size: 1em;
+}
+#tgap-summary-results-container .ui-flipswitch {
+  font-size: .7em;
+}
+#tgap-summary-results-container .ui-flipswitch span {
+  margin: 0;
+}
+/*closes tgap-summary-results-container*/
+/* -------------- [END tgap summary results] -------------- */
+/* ------------ [START tgap summary tables] --------------- */
+#summary-page {
+  /* tables contain iar/can and notes info */
+
+  /*closes table*/
+
+  /* create more spacing for last row of re-inspection table */
+
+  /* styles specific to first table */
+
+  /*closes tgap-iar-can-table*/
+
+  /* styles specific to second table */
+
+  /*closes tgap-note-detail-table*/
+
+  /* force height on footer for view mode */
+
+}
+#summary-page table {
+  margin: 2em 0;
+  display: block;
+  /* table heading */
+
+  /* center narrow columns i.e. iar, can, view */
+
+  /* override jquery mobile default button margins */
+
+  /* table column header row to have added separation */
+
+  /* table column headers */
+
+  /*closes td*/
+
+  /* thicker border on left side */
+
+  /* thicker border on right side */
+
+}
+#summary-page table caption {
+  margin: 0;
+  text-align: center;
+  font-size: 1.1em;
+  opacity: 1;
+  background: #eeeeee;
+  border: 8px solid #eeeeee;
+}
+#summary-page table .col-center {
+  width: 5%;
+  text-align: center;
+}
+#summary-page table .ui-btn {
+  margin: 0;
+}
+#summary-page table thead tr {
+  border-bottom: 8px solid #eeeeee;
+}
+#summary-page table th {
+  text-align: center;
+}
+#summary-page table td {
+  line-height: 1.3em;
+  /* last column view icon is vertically centered */
+
+}
+#summary-page table td:last-child {
+  vertical-align: middle;
+}
+#summary-page table th,
+#summary-page table td {
+  border: 2px solid #eeeeee;
+}
+#summary-page table th:first-child,
+#summary-page table td:first-child {
+  border-left: 8px solid #eeeeee;
+}
+#summary-page table th:last-child,
+#summary-page table td:last-child {
+  border-right: 8px solid #eeeeee;
+}
+#summary-page #tgap-unanswered-table tbody tr:last-child {
+  border-bottom: 8px solid #eeeeee;
+}
+#summary-page #tgap-iar-can-table {
+  /* create more spacing for overall/totals row */
+
+  /*closes td*/
+
+}
+#summary-page #tgap-iar-can-table tbody tr:last-child {
+  border: 8px solid #eeeeee;
+  border-left: 0;
+  border-right: 0;
+}
+#summary-page #tgap-iar-can-table td {
+  padding: 1em .5em;
+  /* edit icons to the left */
+
+}
+#summary-page #tgap-iar-can-table td .ui-icon-edit {
+  float: left;
+  margin: .2em .5em 0 0;
+}
+#summary-page #tgap-note-detail-table {
+  /* create border for last row */
+
+}
+#summary-page #tgap-note-detail-table tbody tr:last-child {
+  border-bottom: 8px solid #eeeeee;
+}
+#summary-page .ui-footer {
+  min-height: 58px;
+}
+/*closes summary-page*/
+/* ------------- [END tgap summary tables] ---------------- */
+/* --------------- [START tgap signature] ----------------- */
+/* div for content displayed in place of signature (when inspection is still underway) */
+.underway {
+  padding: .2em 1em;
+  margin: 1em 0 1em 0;
+  line-height: 1.8em;
+  background: #edf4ff;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border-radius: 15px 15px 15px 15px;
+}
+/* div surrounding signature section */
+.signature {
+  padding: .2em 1em;
+  margin: 1em 0 8em 0;
+  line-height: 1.8em;
+  background: #edf4ff;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border-radius: 15px 15px 15px 15px;
+  /* text fields for signature (respondent name, email addresses) */
+
+  /* add relative positioning to div around signature to prevent Android styling problem with absolute positioning post-signing */
+
+  /* class applied to canvas */
+
+  /* close inspection button to the right */
+
+}
+.signature .ui-input-text {
+  margin-bottom: 0;
+  display: inline-block;
+  width: 30%;
+  font-size: 1.1em;
+}
+.signature #signature-container {
+  position: relative;
+  overflow: hidden;
+}
+.signature .pad {
+  margin-bottom: 2em;
+}
+.signature .ui-btn.close {
+  margin-top: -3.25em;
+  float: right;
+}
+/*closes signature*/
+/* --------------- [START tgap signature] ----------------- */
+/* ------------- [START user guide] ------------- */
+#user-guide-page {
+  line-height: 150%;
+  /*closes div*/
+
+  /*closes ol*/
+
+  /*closes ul*/
+
+}
+#user-guide-page .bookmark-link {
+  margin-bottom: 1.1em;
+  display: block;
+}
+#user-guide-page .user-guide-container > div {
+  margin: 3em 0;
+  padding: 0 1em 1em 1em;
+  border: 4px solid #eee;
+}
+#user-guide-page .user-guide-container > div p {
+  font-style: italic;
+  line-height: 140%;
+}
+#user-guide-page .user-guide-container > div strong {
+  color: #000;
+}
+#user-guide-page .user-guide-container > div:first-child {
+  margin-top: 0;
+  font-size: 1.05em;
+  border: none;
+  padding: .2em 1em;
+  margin: 1em 0 1em 0;
+  line-height: 1.8em;
+  background: #edf4ff;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border-radius: 15px 15px 15px 15px;
+  /* different styling for TOC sublists */
+
+}
+#user-guide-page .user-guide-container > div:first-child p {
+  font-size: 1.1em;
+  font-style: normal;
+}
+#user-guide-page .user-guide-container > div:first-child li {
+  margin: .8em 0;
+}
+#user-guide-page .user-guide-container > div:first-child ul li ul li {
+  margin: 0;
+  font-size: .95em;
+}
+#user-guide-page h2 {
+  margin: 0;
+  padding: 1em 0 .3em 0;
+}
+#user-guide-page h3 {
+  margin: 0;
+}
+#user-guide-page h4 {
+  margin: 2.5em 0 .6em 0;
+  padding: .2em .5em;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: normal;
+  background: #00ad8f;
+}
+#user-guide-page h4 + ol,
+#user-guide-page h4 + ul {
+  margin-top: 0;
+}
+#user-guide-page ol {
+  padding-left: 2.05em;
+}
+#user-guide-page ol li {
+  margin-bottom: .6em;
+}
+#user-guide-page ul {
+  padding-left: 1.7em;
+}
+#user-guide-page ul li {
+  margin-bottom: .4em;
+}
+#user-guide-page ul strong {
+  margin-left: -1.2em;
+}
+#user-guide-page .ui-btn {
+  margin: 0;
+}
+#user-guide-page .help-note {
+  margin: .5em 0 .6em 0;
+  padding: .5em .8em;
+  display: block;
+  width: 92%;
+  background: #ebf6f4;
+  border: 1px solid #00ad8f;
+  -webkit-border-radius: 8px 8px 8px 8px;
+  border-radius: 8px 8px 8px 8px;
+}
+#user-guide-page div[data-role="footer"] {
+  padding: 1%;
+}
+/*closes user-guide-page*/
+/* ------------- [END user guide] ------------- */
+/* pages */
+/* ------------- [START main checklist page] ------------- */
+#main-checklist-page {
+  /* change button styles for buttons we want clickable but not visibly buttons */
+
+  /*closes hidden-button*/
+
+  /*closes data-role=footer*/
+
+}
+#main-checklist-page .hidden-button {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  color: #333;
+  font-size: 1em;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  /* force display of note icon */
+
+}
+#main-checklist-page .hidden-button:hover,
+#main-checklist-page .hidden-button:active {
+  text-shadow: 0 0 0;
+}
+#main-checklist-page .hidden-button .ui-icon-note {
+  width: 37px;
+  height: 36px;
+  border: none;
+}
+#main-checklist-page div[data-role="footer"] {
+  /*closes ui-grid-b*/
+
+}
+#main-checklist-page div[data-role="footer"] .ui-grid-b {
+  padding: .5%;
+}
+#main-checklist-page div[data-role="footer"] .ui-grid-b .ui-block-b {
+  text-align: center;
+}
+#main-checklist-page div[data-role="footer"] h2 {
+  margin: 0;
+  text-align: center;
+  line-height: 1.8em;
+}
+
+
+/*closes main-checklist-page*/
+/* ------------- [END main checklist page] ------------- */
+/* ---------- [END Import stylesheets] ------------ */

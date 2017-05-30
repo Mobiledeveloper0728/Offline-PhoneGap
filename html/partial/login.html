@@ -1,0 +1,39 @@
+<div data-role="content">
+    <div class="ui-block-a">
+        <h2 class="org-name">{{orgName}}</h2>
+		<a href="#user-guide-page" data-transition="slide">
+			<img id="login_logo" src="./img/logo-app-header.png" alt="BasicGov Audit App Logo">
+		</a>
+    </div>
+    <div class="ui-block-b">
+
+        <h2>Log in to BasicGov Inspection Application (v{{appVersion}})</h2>
+
+        <form name="loginForm" action="javascript: return false;">
+            <label for="login-Username">User Name</label>
+            <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">
+                <input autocapitalize="off" id="login-Username" placeholder="email address" type="email" ng-model="username">
+            </div>
+
+            <label for="login-Password">Password</label>
+            <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">
+                <input id="login-Password" placeholder=" password" type="password" ng-model="password" name="password">
+            </div>
+            <div class="error-msg" ng-show="loginForm.password.$error.wrongUsernamePassword">The user name or password is incorrect. Please try again.</div>
+
+            <div class="error-msg" ng-show="loginForm.password.$error.sfError">Login failed with Salesforce error - {{loginErrorMsg}}</div>
+
+            <button type="submit" ng-click="login(username, password)" class="ui-btn ui-btn-d ui-btn-inline ui-corner-all ui-btn-icon-right ui-icon-arrow-r">Log In</button>
+
+            <div class="ui-checkbox" id="use-sandbox-context">
+                <label for="use-sandbox" class="ui-checkbox-off">Sandbox</label>
+                <input type="checkbox" name="use-sandbox" id="use-sandbox" class="custom" ng-model="useSandbox" ng-change="useSandboxChange()" />
+            </div>
+
+            <div class="ui-checkbox" id="debug-mode-context">
+                <label for="debug-mode" class="ui-checkbox-off">Debug</label>
+                <input type="checkbox" name="debug-mode" id="debug-mode" class="custom" ng-model="debugModeOn" ng-change="debugModeOnChange()" />
+            </div>
+        </form>
+    </div>
+</div>

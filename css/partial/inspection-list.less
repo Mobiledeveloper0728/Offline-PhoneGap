@@ -1,0 +1,140 @@
+
+
+/* ------------- [START inspection-list] ------------- */
+
+#inspection-list-page {
+
+  /* div for empty state message (has to be fixed to accommodate previously loaded long page) */
+  .no-inspections {
+    margin: 1em 15%;
+    padding: 1em 2em;
+    position: fixed;
+    width: 60%;
+    background: @light-blue;
+    .border-radius(15px, 15px, 15px, 15px);
+  }
+
+	ul.ui-listview 	{
+		margin:	15px 0px 0px 0px;
+		}
+
+  /* every other inspection background changes colour */
+  .ui-listview li {
+	border:	1px solid #000;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+    padding: 1em;
+    margin:	10px 15px;
+
+    &:nth-child(even) {
+      background: @light-blue;
+    }
+
+  }/*closes ui-listview li*/
+
+  /* audit/inspection # header */
+  h3 {
+    margin-bottom: 1em;
+    padding-bottom:	.6em;
+    font-size: 1.2em;
+    border-bottom: 1px solid #333;
+    width:	100%;
+  }
+
+	.dueDate	{
+		float:	right;
+		display:	inline-block;
+		font-size:	.8em;
+		clear:	right;
+		}
+
+.col1	{
+	float:	left;
+	width:25%;
+	padding:	0px 15px 0px 0px;
+	}
+
+.col2	{
+	float:	left;
+	border-left:	1px solid #000;
+	width:35%;
+	padding:	0px 15px 0px 15px;
+	}
+
+.col3	{
+	float:left;
+	clear:right;
+	width:30%;
+	padding:	0px 15px 0px 15px;
+	text-align:	right;
+	}
+
+    .ui-listview li .ui-btn {
+        .box-shadow(1px, 2px, 2px, #ddd);
+        clear:both;
+        min-width:195px;
+    }
+	.ui-listview li .ui-btn-c	{
+		padding:	4px 0px;
+		}
+
+
+  /* spacing for fields */
+  .ui-grid-a {
+
+    margin-bottom: .3em;
+
+    /* labels for fields displayed for inspections */
+    b {
+
+      font-weight: normal;
+
+      /* colon follows label */
+      &:after {
+        content: '\3A';
+      }
+
+    }/*closes b*/
+
+  }/*closes ui-grid-a*/
+
+  /* override jquery mobile default style */
+  .ui-listview > .ui-li-static {
+    white-space: normal;
+  }
+
+  /* color for failed or passed inspection statuses */
+  .inspection-result-Failed {
+    color: @red;
+  }
+  .inspection-result-Passed {
+    color: @green;
+  }
+
+  /* position cancel/start buttons */
+  .list-buttons {
+
+    text-align: right;
+
+    p {
+      margin: 0 .5em 0 0;
+    }
+
+  }/*closes list-buttons*/
+
+  /* highlight address */
+  .bigger-text {
+    font-size: 1.2em;
+  }
+
+  /* class for span wrapping offline status display */
+  .offline-status {
+    padding-right: 1em;
+    color: #bbb;
+    font-style: italic;
+  }
+
+}/*closes inspection-list-page*/
+
+/* ------------- [END inspection-list] --------------- */

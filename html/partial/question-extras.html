@@ -1,0 +1,55 @@
+﻿<div data-role="header" data-position="fixed" class="ui-btn-active ui-state-persist" data-tap-toggle="false">
+    <a href="#user-guide-page" data-transition="slide" class="logo-link">
+        <img class="header_logo" src="img/logo-app-header.png" alt="" basicgov audit app logo" />
+    </a>
+    <!--<button ng-click="addNotes($event)" ng-class="{'ui-btn ui-icon-note ui-btn-icon-notext ui-corner-all has-note' : question.thisAnswer.Comments, 'ui-btn ui-icon-note ui-btn-icon-notext ui-corner-all' : !question.thisAnswer.Comments}"></button>-->
+    <h1 class="header-center">{{question.number}} "{{question.title}}"</h1>
+</div>
+
+<div role="main" class="ui-content jqm-content" id="question-extra-container">
+
+    <ul data-role="listview">
+        <li>
+            <span class="ui-btn ui-btn-a ui-icon-star ui-btn-icon-notext ui-corner-all"></span>
+            <h2>
+                Requirements
+            </h2>
+            <p>{{question.body}}</p>
+        </li>
+        <li>
+            <span class="ui-btn ui-btn-a ui-icon-bullets ui-btn-icon-notext ui-corner-all"></span>
+            <h2>
+                Procedure
+            </h2>
+            <p>{{question.procedure}}</p>
+        </li>
+        <li>
+            <span class="ui-btn ui-btn-a ui-icon-check ui-btn-icon-notext ui-corner-all"></span>
+            <h2>
+                Verification
+            </h2>
+            <p>{{question.verification}}</p>
+        </li>
+        <li>
+            <span class="ui-btn ui-btn-a ui-icon-alert ui-btn-icon-notext ui-corner-all"></span>
+            <h2>
+                Corrective Action/Disposition*
+            </h2>
+            <p>{{question.correctiveAction}}</p>
+        </li>
+    </ul>
+
+    <p class="actions-note">
+        *Enter corrective actions for questions with a<br /> non-compliant answer on the
+        <button ng-click="goToSummaryScreen()" class="ui-btn ui-btn-a">
+            Summary Screen
+        </button>.
+    </p>
+
+</div>
+
+<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+    <div class="footer-left">
+        <button class="ui-btn ui-btn-d ui-corner-all ui-icon-arrow-l ui-btn-icon-left ui-btn-inline" ng-click="goBackToChecklist()">Back</button>
+    </div>
+</div>
